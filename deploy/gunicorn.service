@@ -1,0 +1,17 @@
+[Unit]
+Description=Eduflow Gunicorn Service
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/eduflow/backend
+EnvironmentFile=/var/www/eduflow/.env
+ExecStart=/var/www/eduflow/venv/bin/gunicorn eduflow.wsgi:application \
+    --bind 127.0.0.1:8000 \
+    --workers 3
+
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
