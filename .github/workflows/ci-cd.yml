@@ -1,9 +1,6 @@
 name: CI/CD Pipeline
 
-on:
-  push:
-    branches:
-      - develop
+on: [push]
 
 jobs:
   test:
@@ -54,7 +51,7 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
             cd /var/www/eduflow
-            git pull origin develop
+            git pull origin ${{ github.ref_name }}
             source venv/bin/activate
             pip install -r backend/requirements.txt
             python backend/manage.py migrate
