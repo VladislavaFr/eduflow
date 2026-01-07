@@ -5,6 +5,17 @@ on: [push]
 jobs:
   test:
     runs-on: ubuntu-latest
+    # Передаём переменные окружения в тестовом джобе
+    env:
+      DJANGO_SETTINGS_MODULE: eduflow.settings
+      SECRET_KEY: test-secret-key
+      DEBUG: "1"
+      ALLOWED_HOSTS: "127.0.0.1,localhost"
+      POSTGRES_DB: test_db
+      POSTGRES_USER: test_user
+      POSTGRES_PASSWORD: test_pass
+      POSTGRES_HOST: localhost
+      POSTGRES_PORT: 5432
 
     services:
       postgres:
