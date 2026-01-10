@@ -44,9 +44,10 @@ jobs:
         run: |
           pip install -r backend/requirements.txt
 
-      - name: Run tests
+      - name: Apply migrations and run tests
         run: |
           cd backend
+          python manage.py migrate
           python manage.py test
 
   deploy:
