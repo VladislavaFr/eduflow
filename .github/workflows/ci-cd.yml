@@ -16,6 +16,7 @@ jobs:
       POSTGRES_PASSWORD: test_pass
       POSTGRES_HOST: localhost
       POSTGRES_PORT: 5432
+      CELERY_BROKER_URL: redis://localhost:6379/0
 
     services:
       postgres:
@@ -47,6 +48,7 @@ jobs:
       - name: Apply migrations and run tests
         run: |
           cd backend
+          python manage.py makemigrations
           python manage.py migrate
           python manage.py test
 
@@ -66,5 +68,6 @@ jobs:
             git pull origin ${{ github.ref_name }}
             source venv/bin/activate
             pip install -r backend/requirements.txt
+            python backend/manage.py makemigrations
             python backend/manage.py migrate
             sudo systemctl restart eduflow
