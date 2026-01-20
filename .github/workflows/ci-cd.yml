@@ -85,7 +85,7 @@ jobs:
             cd ~/eduflow
 
             if [ ! -d ".git" ]; then
-              git clone https://github.com/<твoй-репозиторий>.git .
+              git clone https://github.com/vladislava/eduflow.git .
             else
               git pull origin ${{ github.ref_name }}
             fi
@@ -99,5 +99,3 @@ jobs:
 
             python backend/manage.py makemigrations
             python backend/manage.py migrate
-
-            # sudo systemctl restart eduflow || echo "Service not found, skipping restart"
