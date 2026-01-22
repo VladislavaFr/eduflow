@@ -69,11 +69,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.8.1
-        with:
-          ssh-private-key: ${{ secrets.SERVER_SSH_KEY }}
-
       - name: Deploy to server
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -95,6 +90,7 @@ jobs:
             fi
             source venv/bin/activate
 
+            pip install --upgrade pip
             pip install -r backend/requirements.txt
 
             python backend/manage.py makemigrations
