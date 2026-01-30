@@ -80,7 +80,7 @@ jobs:
             git switch dev
             git pull
 
-            sudo python3 -m venv venv
+            sudo apt install python3.12-venv
             sudo source venv/bin/activate
 
             pip install --upgrade pip
