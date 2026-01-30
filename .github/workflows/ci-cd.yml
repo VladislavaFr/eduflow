@@ -76,14 +76,9 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            mkdir -p ~/eduflow
             cd ~/eduflow
-
-            if [ ! -d ".git" ]; then
-              git clone https://github.com/vladislava/eduflow.git .
-            else
-              git pull origin ${{ github.ref_name }}
-            fi
+            git switch dev
+            git pull
 
             if [ ! -d "venv" ]; then
               python3 -m venv venv
