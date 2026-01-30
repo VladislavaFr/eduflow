@@ -81,6 +81,7 @@ jobs:
             git pull
 
             sudo apt install python3.12-venv
+            python3 -m venv venv
             sudo source venv/bin/activate
 
             pip install --upgrade pip
